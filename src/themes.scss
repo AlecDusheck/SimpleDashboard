@@ -97,5 +97,20 @@ body{
   background-color: #1a1a1d;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Raleway');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+.card-header {
+  padding: 0.4rem 0.5rem;
+}
+
+.card-footer {
+  padding: 0.4rem 0.5rem;
+}
+
+.card-block{
+  padding: 0.75rem;
+}
+
+
+
+@import "../node_modules/typeface-raleway/index.css";
+//@import url('https://fonts.googleapis.com/icon?family=Material+Icons')
+@import "../node_modules/material-design-icons-iconfont/dist/material-design-icons.css";

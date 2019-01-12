@@ -1,21 +1,18 @@
 {
-  "name": "angular-electron",
+  "name": "simpledashboard",
   "version": "5.1.0",
-  "description": "Angular 7 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "description": "SimplyDashboard",
+  "homepage": "https://team2502.com",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Alec Dusheck",
+    "email": "alec@simplyalec.com"
   },
   "keywords": [
-    "angular",
-    "angular 7",
-    "electron",
-    "typescript",
-    "sass"
+    "frc",
+    "dashboard",
+    "frc dashboard"
   ],
   "main": "main.js",
-  "private": true,
   "scripts": {
     "postinstall": "npm run postinstall:electron && electron-builder install-app-deps",
     "postinstall:web": "node postinstall-web",
@@ -39,10 +36,12 @@
   },
   "dependencies": {
     "angular-notifier": "^4.1.1",
-    "bootstrap": "4.0.0-alpha.6"
+    "bootstrap": "4.0.0-alpha.6",
+    "material-design-icons-iconfont": "^4.0.3",
+    "typeface-raleway": "0.0.54"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.11.4",
+    "@angular-devkit/build-angular": "^0.12.1",
     "@angular/cli": "7.1.4",
     "@angular/common": "7.1.4",
     "@angular/compiler": "7.1.4",

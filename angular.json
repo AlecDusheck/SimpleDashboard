@@ -97,7 +97,8 @@
             "scripts": [],
             "styles": [
               "src/styles.scss",
-              "src/themes.scss"
+              "src/themes.scss",
+              "node_modules/material-design-icons/iconfont/material-icons.css"
             ],
             "assets": [
               "src/assets",
