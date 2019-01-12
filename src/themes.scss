@@ -1,0 +1,101 @@
+/* Bootstrap custom overrides */
+$gray:  #1A1A1D;
+$red:    #950740;
+$pink:   #C3073F;
+
+$brand-primary:             $pink;
+$link-color:                $pink;
+$body-bg:                   $gray;
+$font-family-sans-serif: "Raleway", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+$spacer:   1rem !default;
+$spacer-x: $spacer !default;
+$spacer-y: $spacer !default;
+$spacers: (
+  0: (
+    x: 0,
+    y: 0
+  ),
+  1: (
+    x: ($spacer-x * .25),
+    y: ($spacer-y * .25)
+  ),
+  2: (
+    x: ($spacer-x * .5),
+    y: ($spacer-y * .5)
+  ),
+  3: (
+    x: $spacer-x,
+    y: $spacer-y
+  ),
+  4: (
+    x: ($spacer-x * 1.5),
+    y: ($spacer-y * 1.5)
+  ),
+  5: (
+    x: ($spacer-x * 3),
+    y: ($spacer-y * 3)
+  ),
+  6: (
+    x: ($spacer-x * 9),
+    y: ($spacer-y * 9)
+  )
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body{
+  color: #fff;
+}
+
+.breadcrumb{
+  background-color: #333333 !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.show > .btn-secondary.dropdown-toggle, .btn-secondary {
+  color: #fff;
+  background-color: #1A1A1D !important;
+  border-color: #1A1A1D !important;
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+  box-shadow: none !important;
+}
+
+.card{
+  color: #fff;
+  background-color: #27272b;
+}
+
+.card-header, .card-footer{
+  background-color: #0a0a0a40;
+}
+
+.list-group-item{
+  background-color: #2f2f2f;
+}
+
+.dropdown-menu {
+  background-color: #1a1a1d;
+}
+
+.dropdown-item {
+  color: #fff;
+}
+
+.dropdown-divider {
+  background-color: #27272b;
+}
+
+.dropdown-item:hover {
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+.dropdown-nohover:hover {
+  background-color: #1a1a1d;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
