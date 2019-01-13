@@ -1,13 +1,14 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {ElectronService} from '../providers/electron.service';
-import {NotifierService} from 'angular-notifier';
 
 @Injectable({
     providedIn: 'root'
 })
 export class RobotManagerService {
     public error: string;
-    constructor(private electronService: ElectronService) {}
+
+    constructor(private electronService: ElectronService, private zone: NgZone) {
+    }
 
     init(): void {
         if (!this.electronService.isElectron()) {
@@ -16,7 +17,9 @@ export class RobotManagerService {
         }
         this.electronService.ipcRenderer.on('error', (_, msg) => {
             console.log('Got error: ' + msg);
-            this.error = msg;
+            this.zone.run(() => {
+                this.error = msg;
+            });
         });
         // TODO: remove hard coded
         this.electronService.ipcRenderer.send('connect', 'roborio-2502-frc.local');
