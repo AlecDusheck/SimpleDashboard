@@ -1,54 +1,54 @@
 /* Bootstrap custom overrides */
-$gray:  #1A1A1D;
-$red:    #950740;
-$pink:   #C3073F;
+$gray: #1A1A1D;
+$red: #950740;
+$pink: #C3073F;
 
-$brand-primary:             $pink;
-$link-color:                $pink;
-$body-bg:                   $gray;
+$brand-primary: $pink;
+$link-color: $pink;
+$body-bg: $gray;
 $font-family-sans-serif: "Raleway", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-$spacer:   1rem !default;
+$spacer: 1rem !default;
 $spacer-x: $spacer !default;
 $spacer-y: $spacer !default;
 $spacers: (
-  0: (
-    x: 0,
-    y: 0
-  ),
-  1: (
-    x: ($spacer-x * .25),
-    y: ($spacer-y * .25)
-  ),
-  2: (
-    x: ($spacer-x * .5),
-    y: ($spacer-y * .5)
-  ),
-  3: (
-    x: $spacer-x,
-    y: $spacer-y
-  ),
-  4: (
-    x: ($spacer-x * 1.5),
-    y: ($spacer-y * 1.5)
-  ),
-  5: (
-    x: ($spacer-x * 3),
-    y: ($spacer-y * 3)
-  ),
-  6: (
-    x: ($spacer-x * 9),
-    y: ($spacer-y * 9)
-  )
+        0: (
+                x: 0,
+                y: 0
+        ),
+        1: (
+                x: ($spacer-x * .25),
+                y: ($spacer-y * .25)
+        ),
+        2: (
+                x: ($spacer-x * .5),
+                y: ($spacer-y * .5)
+        ),
+        3: (
+                x: $spacer-x,
+                y: $spacer-y
+        ),
+        4: (
+                x: ($spacer-x * 1.5),
+                y: ($spacer-y * 1.5)
+        ),
+        5: (
+                x: ($spacer-x * 3),
+                y: ($spacer-y * 3)
+        ),
+        6: (
+                x: ($spacer-x * 9),
+                y: ($spacer-y * 9)
+        )
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-body{
+body {
   color: #fff;
 }
 
-.breadcrumb{
+.breadcrumb {
   background-color: #333333 !important;
   padding: 0.5rem 1rem !important;
 }
@@ -63,16 +63,16 @@ body{
   box-shadow: none !important;
 }
 
-.card{
+.card {
   color: #fff;
   background-color: #27272b;
 }
 
-.card-header, .card-footer{
+.card-header, .card-footer {
   background-color: #0a0a0a40;
 }
 
-.list-group-item{
+.list-group-item {
   background-color: #2f2f2f;
 }
 
@@ -105,10 +105,9 @@ body{
   padding: 0.4rem 0.5rem;
 }
 
-.card-block{
+.card-block {
   padding: 0.75rem;
 }
-
 
 
 @import "../node_modules/typeface-raleway/index.css";

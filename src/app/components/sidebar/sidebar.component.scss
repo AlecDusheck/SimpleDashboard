@@ -1,13 +1,14 @@
 $sidebar-width: 4.2rem;
 
-body{
+body {
   background-color: #e2e2e2;
 }
 
-.sidebarHidden{
+.sidebarHidden {
   #panel-content {
     padding-left: 0 !important;
   }
+
   #sidebar {
     left: 0 !important;
     width: 0 !important;
@@ -17,19 +18,20 @@ body{
 
 #panel {
   color: #363636;
-  position:relative;
+  position: relative;
   min-height: 100%;
 
-  #panel-content{
+  #panel-content {
     padding-left: $sidebar-width;
     color: #fff;
   }
-  #heading{
+
+  #heading {
     height: 3rem;
     width: 100%;
     background-color: #101010;
 
-    button{
+    button {
       background-color: #1A1A1D;
       border-color: transparent;
       margin-top: 0.3rem;
@@ -37,7 +39,8 @@ body{
       margin-right: .3rem;
       width: 2.4rem;
       height: 2.4rem;
-      .switch-arrow{
+
+      .switch-arrow {
         font-size: 2.7rem;
         vertical-align: middle !important;
         margin-top: -11px;
@@ -45,7 +48,7 @@ body{
       }
     }
 
-    #page-title{
+    #page-title {
       color: #fff;
       margin: 0;
       font-size: 1.5rem;
@@ -55,14 +58,14 @@ body{
 
     color: #fff;
 
-    #server{
+    #server {
       float: right;
       width: 10rem;
       margin-right: .5rem;
       margin-top: .7rem;
 
       #status {
-        .bold{
+        .bold {
           font-weight: bold;
         }
 
@@ -91,13 +94,13 @@ body{
       }
     }
 
-    h3{
+    h3 {
       margin-left: 1rem;
       margin-right: 1rem;
     }
   }
 
-  #sidebar{
+  #sidebar {
     z-index: 1000;
     position: absolute;
     left: $sidebar-width;
@@ -106,12 +109,13 @@ body{
     margin-left: -$sidebar-width;
     overflow-y: auto;
     background: #101010;
-    box-shadow: 0 1rem 2rem rgba(0,0,0,.175)!important;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .175) !important;
 
     .dropdown {
       margin-top: 0.3rem;
       margin-left: .3rem;
       margin-right: .3rem;
+
       select {
         color: #fff !important;
         background-color: #1A1A1D !important;
@@ -123,7 +127,7 @@ body{
       }
     }
 
-    ul{
+    ul {
       margin-top: 30vh;
       margin-bottom: auto;
       display: flex;
@@ -132,20 +136,20 @@ body{
       //margin-bottom: 0;
       list-style: none;
 
-      li{
+      li {
         text-indent: 20px;
         line-height: 40px;
         margin: 0 0 2rem 0;
 
 
-        a{
+        a {
           font-size: 1rem;
           text-decoration: none;
           color: #fff;
           height: 2.5rem;
           display: list-item;
 
-          i{
+          i {
             padding-right: 10px;
             vertical-align: middle !important;
             padding-bottom: 3px;
@@ -153,30 +157,31 @@ body{
           }
 
         }
-        a:hover{
+
+        a:hover {
           color: #fff;
           text-decoration: none;
         }
       }
 
-      .srv-mgt:hover{
+      .srv-mgt:hover {
         background-color: #1f1f1f
       }
 
-      .srv-mgt{
+      .srv-mgt {
         margin-bottom: 2rem;
       }
 
-      .selected{
+      .selected {
         background-color: #1f1f1f
       }
 
-      .title{
+      .title {
         color: #fff;
         font-weight: bold;
       }
 
-      .title-upper{
+      .title-upper {
         padding-top: 2rem;
       }
 

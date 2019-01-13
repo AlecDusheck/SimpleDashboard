@@ -38,7 +38,8 @@
     "angular-notifier": "^4.1.1",
     "bootstrap": "4.0.0-alpha.6",
     "material-design-icons-iconfont": "^4.0.3",
-    "typeface-raleway": "0.0.54"
+    "typeface-raleway": "0.0.54",
+    "wpilib-nt-client": "^1.7.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.1",
