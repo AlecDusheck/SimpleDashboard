@@ -31,6 +31,11 @@ body {
     width: 100%;
     background-color: #101010;
 
+    #heading-display {
+      width: calc(100% - #{$sidebar-width});
+      margin: 0 !important;
+    }
+
     button {
       background-color: #1A1A1D;
       border-color: transparent;
@@ -58,17 +63,16 @@ body {
 
     color: #fff;
 
-    #server {
-      float: right;
-      width: 10rem;
-      margin-right: .5rem;
+    #indicators {
       margin-top: .7rem;
+      margin-right: .5rem;
+      float: right;
+
+      #timer{
+        margin-right: 5rem;
+      }
 
       #status {
-        .bold {
-          font-weight: bold;
-        }
-
         .dot {
           display: inline-block;
           vertical-align: middle;

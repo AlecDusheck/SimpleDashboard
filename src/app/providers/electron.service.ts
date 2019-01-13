@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {ipcRenderer, remote, webFrame} from 'electron';
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
+import {AppSettings} from '../app.settings';
 
 @Injectable()
 export class ElectronService {
@@ -13,6 +14,7 @@ export class ElectronService {
     remote: typeof remote;
     childProcess: typeof childProcess;
     fs: typeof fs;
+    settings: AppSettings;
 
     constructor() {
         // Conditional imports

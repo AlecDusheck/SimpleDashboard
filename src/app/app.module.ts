@@ -20,6 +20,7 @@ import {HomeComponent} from './components/home/home.component';
 import {SidebarComponent} from './components/sidebar/sidebar.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {RobotManagerService} from './services/robot-manager.service';
+import {ConfigService} from './services/config.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -49,8 +50,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     providers: [ElectronService, {
         provide: APP_INITIALIZER,
-        useFactory: (robotManager: RobotManagerService) => function() {return robotManager.init(); },
-        deps: [RobotManagerService],
+        useFactory: (config: ConfigService, robotManager: RobotManagerService) => () => {
+            return new Promise(resolve => {
+                config.load().then(() => {
+                    robotManager.connect();
+                    return resolve();
+                });
+            });
+        },
+        deps: [ConfigService, RobotManagerService],
         multi: true
     }],
     bootstrap: [AppComponent]

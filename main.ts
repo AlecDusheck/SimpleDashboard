@@ -1,9 +1,12 @@
-import {app, BrowserWindow, screen, ipcMain} from 'electron';
+import {app, BrowserWindow, ipcMain, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import * as wpilib from 'wpilib-nt-client';
-
-
+import * as fs from 'fs-extra';
+import {AppSettings} from './src/app/app.settings';
+import * as os from 'os';
+import App = Electron.App;
+import {load} from '@angular/core/src/render3';
 
 let win, serve;
 const args = process.argv.slice(1);
@@ -31,11 +34,36 @@ const networkTablesRecieve = (key, value, valueType, msgType, id, flags) => {
 
     console.log('packaging data: ' + JSON.stringify(dataPackage));
     // Emit the data to IPC
-    ipcMain.emit('received', dataPackage);
+    win.webContents.send('received', dataPackage);
+};
+
+const loadSettings = async () => {
+    const configPath = path.join(os.homedir(), '.simpledashboard/config.json');
+    let settings: AppSettings;
+    try {
+        // FYI: The <AppSettings><unknown> allows the cast to AppSettings
+        settings = await <AppSettings><unknown>fs.readJson(configPath);
+    } catch (e) {
+        // Check if the file isn't found.
+        if (e.code !== 'ENOENT') {
+            // Rethrow
+            throw e;
+        }
+        //The file doesn't exist... create one.
+        console.warn('Generating new config file...');
+        settings = {
+            clickableBool: {},
+            feedSettings: { width: 900, height: 600 },
+            pinnedVars: {},
+            robotConnection: { addr: 'roborio-2502-frc.local' }
+        };
+
+        await fs.outputJson(configPath, settings);
+    }
+    return settings;
 };
 
 const createWindow = () => {
-
     const electronScreen = screen;
     const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
@@ -61,8 +89,22 @@ const createWindow = () => {
     }
 
     win.webContents.openDevTools();
+
+    ipcMain.on('getSettings', (event) => {
+        loadSettings().then(store => {
+           event.sender.send('settings', store);
+        });
+    });
+
     // Prep the IPC socket for using NetworkTables
     ipcMain.on('connect', (event, address) => {
+        // Check to see if we're already connected to the Robot
+        if (client.isConnected()) {
+            console.log('[NT] Cleaning up...');
+            // We are... clean up
+            client.removeListener(networkTablesRecieve);
+            client.destroy();
+        }
         console.log('[NT] Connecting to robot @ ' + address);
         client.start((connected, err) => {
             if (err) {

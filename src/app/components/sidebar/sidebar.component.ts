@@ -1,6 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {RobotStatus} from '../../robot.status';
+import {RobotManagerService} from '../../services/robot-manager.service';
 
 @Injectable({
     providedIn: 'root'
@@ -15,15 +16,13 @@ export class SidebarComponent implements OnInit {
 
     public sidebarDisplayed: boolean;
     public currentUrl: string;
-    public robotStatus: RobotStatus;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, public robotManager: RobotManagerService) {
     }
 
     ngOnInit() {
+        //TODO: debugging
         this.sidebarDisplayed = true;
-        // TODO: debugging
-        this.robotStatus = RobotStatus.INIT;
 
         this.router.events.subscribe((e) => {
             if (e instanceof NavigationEnd) {

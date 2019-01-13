@@ -1,6 +1,5 @@
 <div [class.sidebarHidden]="!sidebarDisplayed" class="" id="panel">
     <div id="sidebar">
-        <div id="timer"></div>
         <ul class="sidebar-content">
             <li [class.selected]="currentUrl == '/'" class="srv-mgt">
                 <a routerLink="/"><i class="material-icons">videogame_asset</i></a>
@@ -15,14 +14,28 @@
     </div>
     <div id="panel-content">
         <div id="heading">
-            <button (click)="toggleSidebar()" *ngIf="!sidebarDisplayed" class="btn btn-primary" type="button"><i
-                    class="material-icons switch-arrow">arrow_right</i></button>
-            <button (click)="toggleSidebar()" *ngIf="sidebarDisplayed" class="btn btn-primary" type="button"><i
-                    class="material-icons switch-arrow">arrow_left</i></button>
-            <div id="server">
-        <span id="status"><span class="bold">Robot Status: </span>{{robotStatus}}  <span [ngClass]="{'INIT': 'dot-working', 'TELEOP': 'dot-running', 'AUTON': 'dot-running', 'DISABLED':'dot-stopped'}[robotStatus]"
-                                                                                         class='dot'></span> </span>
+            <div class="row" id="heading-display">
+                <div class="col-md-3">
+                    <button (click)="toggleSidebar()" *ngIf="!sidebarDisplayed" class="btn btn-primary" type="button"><i
+                            class="material-icons switch-arrow">arrow_right</i></button>
+                    <button (click)="toggleSidebar()" *ngIf="sidebarDisplayed" class="btn btn-primary" type="button"><i
+                            class="material-icons switch-arrow">arrow_left</i></button>
+                </div>
+                <div class="col-md-9">
+                    <div id="indicators" class="row">
+                        <span id="timer">
+                            <span class="bold">Match time: </span>69:69
+                        </span>
+                        <span id="status"><span class="bold">Robot Status: </span>{{robotManager.status}}  <span
+                                [ngClass]="{'INIT': 'dot-working', 'TELEOP': 'dot-running', 'AUTON': 'dot-running', 'DISABLED':'dot-stopped', 'DISCONNECTED':'dot-stopped', 'IDLE':'dot-working'}[robotManager.status]"
+                                class='dot'></span> </span>
+                    </div>
+                </div>
             </div>
+            <!--<div id="server">-->
+            <!--<span id="status"><span class="bold">Robot Status: </span>{{robotManager.status}}  <span [ngClass]="{'INIT': 'dot-working', 'TELEOP': 'dot-running', 'AUTON': 'dot-running', 'DISABLED':'dot-stopped'}[robotManager.status]"-->
+            <!--class='dot'></span> </span>-->
+            <!--</div>-->
         </div>
         <ng-content></ng-content>
     </div>

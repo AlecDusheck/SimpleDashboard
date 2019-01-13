@@ -35,7 +35,9 @@
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
   },
   "dependencies": {
+    "@types/fs-extra": "^5.0.4",
     "bootstrap": "4.0.0-alpha.6",
+    "fs-extra": "^7.0.1",
     "material-design-icons-iconfont": "^4.0.3",
     "typeface-raleway": "0.0.54",
     "wpilib-nt-client": "^1.7.1"
