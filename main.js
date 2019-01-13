@@ -7,14 +7,15 @@ var wpilib = require("wpilib-nt-client");
 var win, serve;
 var args = process.argv.slice(1);
 serve = args.some(function (val) { return val === '--serve'; });
-//Get the wpilib client
+// Get the wpilib client
 var client = new wpilib.Client();
 client.setReconnectDelay(1000);
 var networkTablesRecieve = function (key, value, valueType, msgType, id, flags) {
-    //If value comes in as a string and is supposed to be a boolean, convert it.
-    if (value === 'true' || value === 'false')
+    // If value comes in as a string and is supposed to be a boolean, convert it.
+    if (value === 'true' || value === 'false') {
         value = value === 'true';
-    //Assemble the data received into JSON
+    }
+    // Assemble the data received into JSON
     var dataPackage = {
         key: key,
         value: value,
@@ -23,8 +24,9 @@ var networkTablesRecieve = function (key, value, valueType, msgType, id, flags) 
         id: id,
         flags: flags
     };
-    //Emit the data to IPC
-    electron_1.ipcMain.emit("received", dataPackage);
+    console.log('packaging data: ' + JSON.stringify(dataPackage));
+    // Emit the data to IPC
+    electron_1.ipcMain.emit('received', dataPackage);
 };
 var createWindow = function () {
     var electronScreen = electron_1.screen;
@@ -50,24 +52,25 @@ var createWindow = function () {
         }));
     }
     win.webContents.openDevTools();
-    console.log('listener regisered');
     // Prep the IPC socket for using NetworkTables
-    electron_1.ipcMain.on('connect', function (_, address) {
+    electron_1.ipcMain.on('connect', function (event, address) {
         console.log('[NT] Connecting to robot @ ' + address);
         client.start(function (connected, err) {
-            console.log('e: ' + err);
             if (err) {
                 console.log('[NT] Failed to connect. (' + err + ')');
-                electron_1.ipcMain.emit('error', 'failedConnect');
+                // @ts-ignore
+                event.sender.send('error', 'Failed to connect. (' + err + ')');
                 return;
             }
             else if (!connected) {
                 console.log('[NT] Failed to connect. (no robot)');
-                electron_1.ipcMain.emit('error', 'failedConnect');
+                // @ts-ignore
+                event.sender.send.send('error', 'Failed to connect. (no robot)');
                 return;
             }
+            client.addListener(networkTablesRecieve);
             console.log('[NT] Connected (connected: ' + connected + ', err: ' + err + ')');
-            electron_1.ipcMain.emit('connected');
+            event.sender.send.emit('connected');
         }, address);
     });
     // Emitted when the window is closed.

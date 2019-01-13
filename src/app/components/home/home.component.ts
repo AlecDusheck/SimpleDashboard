@@ -8,12 +8,11 @@ import {RobotManagerService} from '../../services/robot-manager.service';
 })
 export class HomeComponent implements OnInit {
 
-    constructor(private robotManager: RobotManagerService) {
+    constructor(public robotManager: RobotManagerService) {
     }
 
     ngOnInit() {
         console.log('app dasdas done!');
-        this.robotManager.connect();
     }
 
 }

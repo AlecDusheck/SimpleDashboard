@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import '../polyfills';
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -19,6 +19,7 @@ import {AppComponent} from './app.component';
 import {HomeComponent} from './components/home/home.component';
 import {SidebarComponent} from './components/sidebar/sidebar.component';
 import {SettingsComponent} from './components/settings/settings.component';
+import {RobotManagerService} from './services/robot-manager.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -46,7 +47,12 @@ export function HttpLoaderFactory(http: HttpClient) {
             }
         })
     ],
-    providers: [ElectronService],
+    providers: [ElectronService, {
+        provide: APP_INITIALIZER,
+        useFactory: (robotManager: RobotManagerService) => function() {return robotManager.init(); },
+        deps: [RobotManagerService],
+        multi: true
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule {

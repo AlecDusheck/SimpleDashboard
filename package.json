@@ -35,7 +35,6 @@
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
   },
   "dependencies": {
-    "angular-notifier": "^4.1.1",
     "bootstrap": "4.0.0-alpha.6",
     "material-design-icons-iconfont": "^4.0.3",
     "typeface-raleway": "0.0.54",

@@ -13,7 +13,7 @@ serve = args.some(val => val === '--serve');
 const client = new wpilib.Client();
 client.setReconnectDelay(1000);
 
-const networkTablesRecieve = (key: string, value: string | boolean, valueType: string, msgType: string, id, flags: string) => {
+const networkTablesRecieve = (key, value, valueType, msgType, id, flags) => {
     // If value comes in as a string and is supposed to be a boolean, convert it.
     if (value === 'true' || value === 'false') {
         value = value === 'true';
@@ -29,6 +29,7 @@ const networkTablesRecieve = (key: string, value: string | boolean, valueType: s
         flags: flags
     };
 
+    console.log('packaging data: ' + JSON.stringify(dataPackage));
     // Emit the data to IPC
     ipcMain.emit('received', dataPackage);
 };
@@ -61,20 +62,24 @@ const createWindow = () => {
 
     win.webContents.openDevTools();
     // Prep the IPC socket for using NetworkTables
-    ipcMain.on('connect', (_, address) => {
+    ipcMain.on('connect', (event, address) => {
         console.log('[NT] Connecting to robot @ ' + address);
         client.start((connected, err) => {
             if (err) {
                 console.log('[NT] Failed to connect. (' + err + ')');
-                ipcMain.emit('error', 'failedConnect');
+                // @ts-ignore
+                event.sender.send('error', 'Failed to connect. (' + err + ')');
                 return;
             } else if (!connected) {
                 console.log('[NT] Failed to connect. (no robot)');
-                ipcMain.emit('error', 'failedConnect');
+                // @ts-ignore
+                event.sender.send.send('error', 'Failed to connect. (no robot)');
                 return;
             }
+            client.addListener(networkTablesRecieve);
+
             console.log('[NT] Connected (connected: ' + connected + ', err: ' + err + ')');
-            ipcMain.emit('connected');
+            event.sender.send.emit('connected');
         }, address);
     });
 
