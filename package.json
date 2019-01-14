@@ -12,7 +12,7 @@
     "dashboard",
     "frc dashboard"
   ],
-  "main": "main.js",
+  "main": "dist/ts/main.js",
   "scripts": {
     "tslint:fix": "tslint --fix -c tslint.json './*/*{.ts/.tsx}' && tslint --fix -c tslint.json main.ts",
     "postinstall": "npm run postinstall:electron && electron-builder install-app-deps",

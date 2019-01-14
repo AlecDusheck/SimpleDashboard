@@ -58,7 +58,6 @@ const loadSettings = async () => {
       feedSettings: { width: 900, height: 600 },
       pinnedVars: {},
       robotConnection: { addr: "roborio-2502-frc.local" },
-      window: { fullscreen: false, smartDashboard: true }
     };
 
     await fs.outputJson(configPath, settings);
@@ -76,8 +75,10 @@ const createWindow = () => {
     x: 0,
     y: 0,
     width: size.width,
-    height: size.height * .88 //TODO: update to actual size
+    height: Math.round(size.height * .88) //TODO: update to actual size
   });
+
+  console.debug("created window with bounds " + size.width + "x" + Math.round(size.height * .88));
 
   if (serve) {
     require("electron-reload")(__dirname, {
@@ -85,9 +86,14 @@ const createWindow = () => {
     });
     win.loadURL("http://localhost:4200");
   } else {
+    console.debug("loading URL: " + url.format({
+      pathname: path.join(__dirname, "../../dist/angular/index.html"),
+      protocol: "file:",
+      slashes: true
+    }));
     win.loadURL(
       url.format({
-        pathname: path.join(__dirname, "dist/index.html"),
+        pathname: path.join(__dirname, "../../dist/angular/index.html"),
         protocol: "file:",
         slashes: true
       })
@@ -98,16 +104,6 @@ const createWindow = () => {
   ipcMain.on("getSettings", event => {
     loadSettings().then(store => {
       console.debug("got store! " + JSON.stringify(store));
-
-      // Update the app screen size
-      if (store.window.smartDashboard) {
-        win.setSize(size.width, size.height * .88) //TODO: update to actual size
-      } else{
-        win.setSize(size.width, size.height)
-      }
-      if (store.window.fullscreen) {
-        win.setFullScreen(true);
-      }
 
       // Emit the settings
       event.sender.send("settings", store);

@@ -17,11 +17,6 @@ export interface AppSettings {
     height: number;
   };
 
-  window: {
-    smartDashboard: boolean,
-    fullscreen: boolean
-  };
-
   robotConnection: {
     addr: string;
   };

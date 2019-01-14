@@ -1,7 +1,7 @@
-import { Injectable, NgZone } from "@angular/core";
-import { ElectronService } from "../providers/electron.service";
-import { RobotStatus } from "../robot.status";
-import { ConfigService } from "./config.service";
+import {Injectable, NgZone} from '@angular/core';
+import {ElectronService} from '../providers/electron.service';
+import {RobotStatus} from '../robot.status';
+import {ConfigService} from './config.service';
 
 @Injectable({
   providedIn: "root"
@@ -9,6 +9,7 @@ import { ConfigService } from "./config.service";
 export class RobotManagerService {
   public error: string;
   public status: RobotStatus;
+  public connected: boolean;
 
   constructor(
     private electronService: ElectronService,
@@ -28,6 +29,7 @@ export class RobotManagerService {
       this.status = RobotStatus.IDLE;
     });
 
+    this.connected = false;
     this.status = RobotStatus.DISCONNECTED;
   }
 
@@ -39,6 +41,12 @@ export class RobotManagerService {
       );
       return;
     }
+    // On connect
+    this.electronService.ipcRenderer.on('connected', () => {
+        this.connected = true;
+        this.status = RobotStatus.INIT;
+    });
+
     // Connect to robot
     this.electronService.ipcRenderer.send(
       "connect",
