@@ -1,19 +1,28 @@
 export interface AppSettings {
-    clickableBool: {
-        [keyName: string]: { inverted: boolean, friendlyName: string }
-    };
+  clickableBool: {
+    [keyName: string]: { inverted: boolean; friendlyName: string };
+  };
 
-    pinnedVars: {
-        [keyName: string]: { index: number, maxValue: number, minValue: number, friendlyName: string }
+  pinnedVars: {
+    [keyName: string]: {
+      index: number;
+      maxValue: number;
+      minValue: number;
+      friendlyName: string;
     };
+  };
 
-    feedSettings: {
-        width: number;
-        height: number;
-    };
+  feedSettings: {
+    width: number;
+    height: number;
+  };
 
-    robotConnection: {
-        addr: string
-    };
+  window: {
+    smartDashboard: boolean,
+    fullscreen: boolean
+  };
 
+  robotConnection: {
+    addr: string;
+  };
 }

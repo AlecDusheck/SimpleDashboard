@@ -3,15 +3,14 @@
   padding-left: 1rem;
   padding-top: 1rem;
 
-  #status{
-    #bat-voltage{
-      .progress{
+  #status {
+    #bat-voltage {
+      .progress {
         margin-top: 4px;
 
-        span{
+        span {
           color: black;
         }
-
       }
     }
   }

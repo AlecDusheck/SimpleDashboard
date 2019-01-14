@@ -1,12 +1,14 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import {NetworkTablesEngineService} from './network-tables-engine.service';
+import { NetworkTablesEngineService } from "./network-tables-engine.service";
 
-describe('NetworkTablesEngineService', () => {
-    beforeEach(() => TestBed.configureTestingModule({}));
+describe("NetworkTablesEngineService", () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-    it('should be created', () => {
-        const service: NetworkTablesEngineService = TestBed.get(NetworkTablesEngineService);
-        expect(service).toBeTruthy();
-    });
+  it("should be created", () => {
+    const service: NetworkTablesEngineService = TestBed.get(
+      NetworkTablesEngineService
+    );
+    expect(service).toBeTruthy();
+  });
 });

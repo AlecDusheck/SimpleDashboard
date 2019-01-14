@@ -1,5 +1,6 @@
 /* ss global */
-html, body {
+html,
+body {
   height: 100%;
   min-height: 100%;
   margin: 0;
@@ -26,8 +27,8 @@ html, body {
   }
 
   .spinner {
-    border: .5rem solid #f3f3f3; /* Light grey */
-    border-top: .5rem solid #C3073F; /* Blue */
+    border: 0.5rem solid #f3f3f3; /* Light grey */
+    border-top: 0.5rem solid #c3073f; /* Blue */
     border-radius: 50%;
     width: 4rem;
     height: 4rem;
@@ -45,7 +46,6 @@ html, body {
       transform: rotate(360deg);
     }
   }
-
 }
 
 @keyframes fadein {
@@ -99,7 +99,7 @@ html, body {
 
 .invalid {
   margin-top: 0.5rem;
-  color: #C3073F
+  color: #c3073f;
 }
 
 .bigerror {
@@ -109,4 +109,3 @@ html, body {
 .bold {
   font-weight: bold;
 }
-

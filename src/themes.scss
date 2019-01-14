@@ -1,7 +1,7 @@
 /* Bootstrap custom overrides */
-$gray: #1A1A1D;
+$gray: #1a1a1d;
 $red: #950740;
-$pink: #C3073F;
+$pink: #c3073f;
 
 $brand-primary: $pink;
 $link-color: $pink;
@@ -12,34 +12,54 @@ $spacer: 1rem !default;
 $spacer-x: $spacer !default;
 $spacer-y: $spacer !default;
 $spacers: (
-        0: (
-                x: 0,
-                y: 0
-        ),
-        1: (
-                x: ($spacer-x * .25),
-                y: ($spacer-y * .25)
-        ),
-        2: (
-                x: ($spacer-x * .5),
-                y: ($spacer-y * .5)
-        ),
-        3: (
-                x: $spacer-x,
-                y: $spacer-y
-        ),
-        4: (
-                x: ($spacer-x * 1.5),
-                y: ($spacer-y * 1.5)
-        ),
-        5: (
-                x: ($spacer-x * 3),
-                y: ($spacer-y * 3)
-        ),
-        6: (
-                x: ($spacer-x * 9),
-                y: ($spacer-y * 9)
-        )
+  0: (
+    x: 0,
+    y: 0
+  ),
+  1: (
+    x: (
+      $spacer-x * 0.25
+    ),
+    y: (
+      $spacer-y * 0.25
+    )
+  ),
+  2: (
+    x: (
+      $spacer-x * 0.5
+    ),
+    y: (
+      $spacer-y * 0.5
+    )
+  ),
+  3: (
+    x: $spacer-x,
+    y: $spacer-y
+  ),
+  4: (
+    x: (
+      $spacer-x * 1.5
+    ),
+    y: (
+      $spacer-y * 1.5
+    )
+  ),
+  5: (
+    x: (
+      $spacer-x * 3
+    ),
+    y: (
+      $spacer-y * 3
+    )
+  ),
+  6: (
+    x: (
+      $spacer-x * 9
+    ),
+    y: (
+      $spacer-y * 9
+    )
+  )
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
@@ -53,13 +73,15 @@ body {
   padding: 0.5rem 1rem !important;
 }
 
-.show > .btn-secondary.dropdown-toggle, .btn-secondary {
+.show > .btn-secondary.dropdown-toggle,
+.btn-secondary {
   color: #fff;
-  background-color: #1A1A1D !important;
-  border-color: #1A1A1D !important;
+  background-color: #1a1a1d !important;
+  border-color: #1a1a1d !important;
 }
 
-.btn-secondary:focus, .btn-secondary.focus {
+.btn-secondary:focus,
+.btn-secondary.focus {
   box-shadow: none !important;
 }
 
@@ -68,7 +90,8 @@ body {
   background-color: #27272b;
 }
 
-.card-header, .card-footer {
+.card-header,
+.card-footer {
   background-color: #0a0a0a40;
 }
 
@@ -108,7 +131,6 @@ body {
 .card-block {
   padding: 0.75rem;
 }
-
 
 @import "../node_modules/typeface-raleway/index.css";
 @import "../node_modules/material-design-icons-iconfont/dist/material-design-icons.css";

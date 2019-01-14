@@ -37,11 +37,11 @@ body {
     }
 
     button {
-      background-color: #1A1A1D;
+      background-color: #1a1a1d;
       border-color: transparent;
       margin-top: 0.3rem;
-      margin-left: .3rem;
-      margin-right: .3rem;
+      margin-left: 0.3rem;
+      margin-right: 0.3rem;
       width: 2.4rem;
       height: 2.4rem;
 
@@ -64,11 +64,11 @@ body {
     color: #fff;
 
     #indicators {
-      margin-top: .7rem;
-      margin-right: .5rem;
+      margin-top: 0.7rem;
+      margin-right: 0.5rem;
       float: right;
 
-      #timer{
+      #timer {
         margin-right: 5rem;
       }
 
@@ -78,22 +78,22 @@ body {
           vertical-align: middle;
 
           border-radius: 50%;
-          background-color: #EEE;
+          background-color: #eee;
           height: 15px;
           width: 15px;
           margin: 0 0 2px;
         }
 
         .dot-running {
-          background-color: #449D44;
+          background-color: #449d44;
         }
 
         .dot-stopped {
-          background-color: #D9534F;
+          background-color: #d9534f;
         }
 
         .dot-working {
-          background-color: #F0AD4E;
+          background-color: #f0ad4e;
         }
       }
     }
@@ -113,17 +113,17 @@ body {
     margin-left: -$sidebar-width;
     overflow-y: auto;
     background: #101010;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .175) !important;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.175) !important;
 
     .dropdown {
       margin-top: 0.3rem;
-      margin-left: .3rem;
-      margin-right: .3rem;
+      margin-left: 0.3rem;
+      margin-right: 0.3rem;
 
       select {
         color: #fff !important;
-        background-color: #1A1A1D !important;
-        border-color: #1A1A1D !important;
+        background-color: #1a1a1d !important;
+        border-color: #1a1a1d !important;
 
         option {
           color: #fff !important;
@@ -145,7 +145,6 @@ body {
         line-height: 40px;
         margin: 0 0 2rem 0;
 
-
         a {
           font-size: 1rem;
           text-decoration: none;
@@ -159,7 +158,6 @@ body {
             padding-bottom: 3px;
             margin-left: -20px;
           }
-
         }
 
         a:hover {
@@ -169,7 +167,7 @@ body {
       }
 
       .srv-mgt:hover {
-        background-color: #1f1f1f
+        background-color: #1f1f1f;
       }
 
       .srv-mgt {
@@ -177,7 +175,7 @@ body {
       }
 
       .selected {
-        background-color: #1f1f1f
+        background-color: #1f1f1f;
       }
 
       .title {
@@ -188,8 +186,6 @@ body {
       .title-upper {
         padding-top: 2rem;
       }
-
     }
   }
-
 }

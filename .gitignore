@@ -17,6 +17,10 @@
 .settings/
 *.sublime-workspace
 
+# Stupid Electron
+main.js
+main.js.map
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
