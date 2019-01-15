@@ -15,18 +15,18 @@
         <div class="card-block">
           <table class="table">
             <thead class="thead-dark">
-            <tr>
-              <th scope="col">Key</th>
-              <th scope="col">Value</th>
-              <th scope="col">Type</th>
-            </tr>
+              <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Value</th>
+                <th scope="col">Type</th>
+              </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let key of robotManager.networkTables.table">
-              <td>{{ key.key }}</td>
-              <td>{{ key.value }}</td>
-              <td>{{ key.valueType }}</td>
-            </tr>
+              <tr *ngFor="let key of robotManager.networkTables.table">
+                <td>{{ key.key }}</td>
+                <td>{{ key.value }}</td>
+                <td>{{ key.valueType }}</td>
+              </tr>
             </tbody>
           </table>
         </div>

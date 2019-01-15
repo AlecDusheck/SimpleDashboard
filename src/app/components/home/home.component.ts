@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RobotManagerService } from "../../services/robot-manager.service";
-import {ConfigService} from '../../services/config.service';
+import { ConfigService } from "../../services/config.service";
 
 @Component({
   selector: "app-home",
@@ -8,7 +8,10 @@ import {ConfigService} from '../../services/config.service';
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-  constructor(public robotManager: RobotManagerService, public config: ConfigService) {}
+  constructor(
+    public robotManager: RobotManagerService,
+    public config: ConfigService
+  ) {}
 
   ngOnInit() {
     console.log("app dasdas done!");

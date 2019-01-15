@@ -21,8 +21,8 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { RobotManagerService } from "./services/robot-manager.service";
 import { ConfigService } from "./services/config.service";
-import { StatusModuleComponent } from './components/modules/status-module/status-module.component';
-import { DebugComponent } from './components/debug/debug.component';
+import { StatusModuleComponent } from "./components/modules/status-module/status-module.component";
+import { DebugComponent } from "./components/debug/debug.component";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

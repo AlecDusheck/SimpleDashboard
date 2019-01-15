@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, NgZone} from '@angular/core';
+import { EventEmitter, Injectable, NgZone } from "@angular/core";
 import { NetworktablesLayout } from "../networktables.layout";
 import { ElectronService } from "../providers/electron.service";
 
@@ -22,11 +22,13 @@ export class NetworkTablesEngineService {
         // Tell the app we received an update.
         this.onUpdate.emit();
 
-        const index = this.table.findIndex(existingValue => existingValue.key === data.key);
-        if(index !== -1){
+        const index = this.table.findIndex(
+          existingValue => existingValue.key === data.key
+        );
+        if (index !== -1) {
           //Existing value, insert into the index
           this.table[index] = data;
-        }else{
+        } else {
           //New value, push it!
           this.table.push(data);
         }

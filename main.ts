@@ -127,18 +127,12 @@ const createWindow = () => {
 
   // Prep the IPC socket for using NetworkTables
   ipcMain.on("connect", (event, address) => {
-    // Check to see if we're already connected to the Robot
-    if (client.isConnected()) {
-      console.log("[NT] Cleaning up...");
-      // We are... clean up
-      client.removeListener(networkTablesRecieve);
-      client.destroy();
-    }
-
     console.log("[NT] Connecting to robot @ " + address);
 
     // Connect to the robot using WPILIB
     client.start((connected, err) => {
+      // Make sure we don't double register the listener...
+      client.removeListener(networkTablesRecieve);
 
       //Check for errors
       if (err) {
@@ -153,7 +147,7 @@ const createWindow = () => {
 
         // Apparently this function doesn't exist... So why is it documented and works?!
         // @ts-ignore
-        event.sender.send.send("error", "Failed to connect. (no robot)");
+        event.sender.send("error", "Failed to connect. (no robot)");
         return;
       }
 

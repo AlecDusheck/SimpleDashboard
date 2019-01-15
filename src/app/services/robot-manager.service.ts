@@ -2,7 +2,7 @@ import { Injectable, NgZone } from "@angular/core";
 import { ElectronService } from "../providers/electron.service";
 import { RobotStatus } from "../robot.status";
 import { ConfigService } from "./config.service";
-import {NetworkTablesEngineService} from './network-tables-engine.service';
+import { NetworkTablesEngineService } from "./network-tables-engine.service";
 
 @Injectable({
   providedIn: "root"
