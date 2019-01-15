@@ -1,0 +1,36 @@
+<app-sidebar>
+  <div *ngIf="robotManager.error" class="alert alert-danger" role="alert">
+    {{ robotManager.error }}
+  </div>
+
+  <div id="loading" *ngIf="!robotManager.connected && !robotManager.error">
+    <div class="spinner"></div>
+    <p>Connecting to robot...</p>
+  </div>
+
+  <div class="row" id="debug" *ngIf="robotManager.connected">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">Debugging</div>
+        <div class="card-block">
+          <table class="table">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">Key</th>
+              <th scope="col">Value</th>
+              <th scope="col">Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let key of robotManager.networkTables.table">
+              <td>{{ key.key }}</td>
+              <td>{{ key.value }}</td>
+              <td>{{ key.valueType }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-sidebar>

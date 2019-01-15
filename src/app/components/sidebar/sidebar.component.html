@@ -4,11 +4,14 @@
       <li [class.selected]="currentUrl == '/'" class="srv-mgt">
         <a routerLink="/"><i class="material-icons">videogame_asset</i></a>
       </li>
-      <li [class.selected]="currentUrl == '/panel/files'" class="srv-mgt">
-        <a routerLink="/panel/files"><i class="material-icons">file_copy</i></a>
+      <li [class.selected]="currentUrl == '/camera'" class="srv-mgt">
+        <a routerLink="/panel/files"><i class="material-icons">camera_alt</i></a>
       </li>
       <li [class.selected]="currentUrl == '/settings'" class="srv-mgt">
         <a routerLink="/settings"><i class="material-icons">settings</i></a>
+      </li>
+      <li [class.selected]="currentUrl == '/debug'" class="srv-mgt">
+        <a routerLink="/debug"><i class="material-icons">build</i></a>
       </li>
     </ul>
   </div>

@@ -1,7 +1,8 @@
-import {Injectable, NgZone} from '@angular/core';
-import {ElectronService} from '../providers/electron.service';
-import {RobotStatus} from '../robot.status';
-import {ConfigService} from './config.service';
+import { Injectable, NgZone } from "@angular/core";
+import { ElectronService } from "../providers/electron.service";
+import { RobotStatus } from "../robot.status";
+import { ConfigService } from "./config.service";
+import {NetworkTablesEngineService} from './network-tables-engine.service';
 
 @Injectable({
   providedIn: "root"
@@ -14,7 +15,8 @@ export class RobotManagerService {
   constructor(
     private electronService: ElectronService,
     private zone: NgZone,
-    private config: ConfigService
+    private config: ConfigService,
+    public networkTables: NetworkTablesEngineService
   ) {
     // On WPILIB error
     this.electronService.ipcRenderer.on("error", (_, msg) => {
@@ -26,7 +28,11 @@ export class RobotManagerService {
     });
     // On WPILIB initial connect
     this.electronService.ipcRenderer.on("connected", () => {
-      this.status = RobotStatus.IDLE;
+      console.log("connected");
+      this.zone.run(() => {
+        this.connected = true;
+        this.status = RobotStatus.INIT;
+      });
     });
 
     this.connected = false;
@@ -41,11 +47,6 @@ export class RobotManagerService {
       );
       return;
     }
-    // On connect
-    this.electronService.ipcRenderer.on('connected', () => {
-        this.connected = true;
-        this.status = RobotStatus.INIT;
-    });
 
     // Connect to robot
     this.electronService.ipcRenderer.send(

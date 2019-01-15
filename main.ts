@@ -38,7 +38,9 @@ const networkTablesRecieve = (key, value, valueType, msgType, id, flags) => {
 };
 
 const loadSettings = async () => {
+  // This is the main config file path
   const configPath = path.join(os.homedir(), ".simpledashboard/config.json");
+
   let settings: AppSettings;
   try {
     // FYI: The <AppSettings><unknown> allows the cast to AppSettings
@@ -57,7 +59,7 @@ const loadSettings = async () => {
       clickableBool: {},
       feedSettings: { width: 900, height: 600 },
       pinnedVars: {},
-      robotConnection: { addr: "roborio-2502-frc.local" },
+      robotConnection: { addr: "roborio-2502-frc.local" }
     };
 
     await fs.outputJson(configPath, settings);
@@ -75,22 +77,35 @@ const createWindow = () => {
     x: 0,
     y: 0,
     width: size.width,
-    height: Math.round(size.height * .88) //TODO: update to actual size
+    height: Math.round(size.height * 0.5), // TODO: update to actual size
+    title: "Simple Dashboard"
   });
+  //Hide the useless Electron menu bar
+  win.setMenuBarVisibility(false);
 
-  console.debug("created window with bounds " + size.width + "x" + Math.round(size.height * .88));
+  console.debug(
+    "created window with bounds " +
+      size.width +
+      "x" +
+      Math.round(size.height * 0.88)
+  );
 
+  // Serve the web page
+  // This needs to point to the Angular /dist/angular folder during dev
   if (serve) {
     require("electron-reload")(__dirname, {
       electron: require(`${__dirname}/node_modules/electron`)
     });
     win.loadURL("http://localhost:4200");
   } else {
-    console.debug("loading URL: " + url.format({
-      pathname: path.join(__dirname, "../../dist/angular/index.html"),
-      protocol: "file:",
-      slashes: true
-    }));
+    console.debug(
+      "loading URL: " +
+        url.format({
+          pathname: path.join(__dirname, "../../dist/angular/index.html"),
+          protocol: "file:",
+          slashes: true
+        })
+    );
     win.loadURL(
       url.format({
         pathname: path.join(__dirname, "../../dist/angular/index.html"),
@@ -100,12 +115,12 @@ const createWindow = () => {
     );
   }
 
-  // Read settings from JSON
+  // Read settings from JSON when the IPC requests it
   ipcMain.on("getSettings", event => {
     loadSettings().then(store => {
       console.debug("got store! " + JSON.stringify(store));
 
-      // Emit the settings
+      // Emit the settings to the sender
       event.sender.send("settings", store);
     });
   });
@@ -121,26 +136,40 @@ const createWindow = () => {
     }
 
     console.log("[NT] Connecting to robot @ " + address);
+
+    // Connect to the robot using WPILIB
     client.start((connected, err) => {
+
+      //Check for errors
       if (err) {
         console.log("[NT] Failed to connect. (" + err + ")");
+
+        // Apparently this function doesn't exist... So why is it documented and works?!
         // @ts-ignore
         event.sender.send("error", "Failed to connect. (" + err + ")");
         return;
       } else if (!connected) {
         console.log("[NT] Failed to connect. (no robot)");
+
+        // Apparently this function doesn't exist... So why is it documented and works?!
         // @ts-ignore
         event.sender.send.send("error", "Failed to connect. (no robot)");
         return;
       }
 
+      // Add networkTablesRecieve to the client
       client.addListener(networkTablesRecieve);
+
       console.log(
         "[NT] Connected (connected: " + connected + ", err: " + err + ")"
       );
-      event.sender.send.emit("connected");
+
+      // Emit that we connected to the robot
+      event.sender.send("connected");
     }, address);
   });
+
+  win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on("closed", () => {

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">Status</div>
+  <div class="card-block">
+    <div class="row" id="bat-voltage">
+      <div class="col-md-3"><b>Voltage:</b></div>
+      <div class="col-md-9">
+        <div class="progress" #batteryVoltage>
+          <div
+                  aria-valuemax="100"
+                  aria-valuemin="0"
+                  class="progress-bar progress-bar-striped"
+                  role="progressbar"
+                  [ngStyle]="{'width.%': battPercentage}"
+          >
+            <span>{{batt}}V</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
