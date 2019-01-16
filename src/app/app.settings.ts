@@ -1,16 +1,22 @@
-export interface AppSettings {
-  clickableBool: {
-    [keyName: string]: { inverted: boolean; friendlyName: string };
-  };
-
-  pinnedVars: {
-    [keyName: string]: {
-      index: number;
-      maxValue: number;
-      minValue: number;
+export interface Usage {
+  zindex: number;
+  name: string;
+  bar: {
+    maxValue: number;
+    enabled: boolean;
+  }
+  friendlyName: string;
+}
+export interface ClickableBool{
+      inverted: boolean;
       friendlyName: string;
-    };
-  };
+      name: string;
+}
+
+
+export interface AppSettings {
+  clickableBool: ClickableBool[]
+  usage: Usage[]
 
   feedSettings: {
     width: number;

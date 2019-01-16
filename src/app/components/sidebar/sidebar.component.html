@@ -70,6 +70,14 @@
       <!-- class='dot'></span> </span> -->
       <!-- </div> -->
     </div>
-    <ng-content></ng-content>
+    <div *ngIf="robotManager.error" class="alert alert-danger" role="alert">
+      {{ robotManager.error }}
+    </div>
+
+    <div id="loading" *ngIf="!robotManager.connected && !robotManager.error">
+      <div class="spinner"></div>
+      <p>Connecting to robot...</p>
+    </div>
+    <ng-content *ngIf="robotManager.connected"></ng-content>
   </div>
 </div>

@@ -1,14 +1,5 @@
 <app-sidebar>
-  <div *ngIf="robotManager.error" class="alert alert-danger" role="alert">
-    {{ robotManager.error }}
-  </div>
-
-  <div id="loading" *ngIf="!robotManager.connected && !robotManager.error">
-    <div class="spinner"></div>
-    <p>Connecting to robot...</p>
-  </div>
-
-  <div class="row" id="home" *ngIf="robotManager.connected">
+  <div class="row" id="home">
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">Live Feed</div>

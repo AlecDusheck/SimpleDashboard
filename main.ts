@@ -4,7 +4,7 @@ import * as os from "os";
 import * as path from "path";
 import * as url from "url";
 import * as wpilib from "wpilib-nt-client";
-import { AppSettings } from "./src/app/app.settings";
+import {AppSettings, ClickableBool, Usage} from './src/app/app.settings';
 
 let win;
 let serve;
@@ -56,9 +56,19 @@ const loadSettings = async () => {
     console.warn("Generating new config file...");
     // Default settings
     settings = {
-      clickableBool: {},
+      clickableBool: [],
       feedSettings: { width: 900, height: 600 },
-      pinnedVars: {},
+      usage: [
+        {
+          zindex: 1,
+          name: "/SmartDashboard/simpledashboard.voltage",
+          bar: {
+            maxValue: 13,
+            enabled: true
+          },
+           friendlyName: "Voltage"
+        }
+      ],
       robotConnection: { addr: "roborio-2502-frc.local" }
     };
 
@@ -94,7 +104,7 @@ const createWindow = () => {
   // This needs to point to the Angular /dist/angular folder during dev
   if (serve) {
     require("electron-reload")(__dirname, {
-      electron: require(`${__dirname}/node_modules/electron`)
+      electron: require(`${__dirname}/../../node_modules/electron`)
     });
     win.loadURL("http://localhost:4200");
   } else {
