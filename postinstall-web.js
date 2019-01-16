@@ -1,5 +1,5 @@
 // Allow angular using electron module (native node modules)
-const fs = require('fs');
+const fs = require('fs'); // file system
 const f_angular = 'node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs/browser.js';
 
 fs.readFile(f_angular, 'utf8', function (err, data) {
