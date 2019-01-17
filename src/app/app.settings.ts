@@ -3,6 +3,7 @@ export interface Usage {
   name: string;
   bar: {
     maxValue: number;
+    minValue: number
     enabled: boolean;
   }
   friendlyName: string;

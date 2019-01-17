@@ -8,7 +8,6 @@ import { ConfigService } from "../../../services/config.service";
   styleUrls: ["./status-module.component.scss"]
 })
 export class StatusModuleComponent implements OnInit, OnDestroy {
-
   public table: any;
 
   private onUpdate;
@@ -37,12 +36,16 @@ export class StatusModuleComponent implements OnInit, OnDestroy {
 
         if (pinnedVar.bar.enabled) {
           try {
-            const varFloat = Number.parseFloat(row.value);
+            const currentVoltage = Number.parseFloat(row.value);
+
             this.table.push({
               name: pinnedVar.friendlyName,
               isBar: true,
-              value: Math.round(varFloat * 100) / 100,
-              percentage: (varFloat / pinnedVar.bar.maxValue) * 100
+              value: Math.round(currentVoltage * 100) / 100,
+              percentage:
+                ((currentVoltage - pinnedVar.bar.minValue) /
+                  (pinnedVar.bar.maxValue - pinnedVar.bar.minValue)) *
+                100
             });
           } catch (e) {
             console.log(
@@ -62,22 +65,6 @@ export class StatusModuleComponent implements OnInit, OnDestroy {
           });
         }
       });
-
-      // let battRow = this.robotManager.networkTables.table.find(
-      //   row => row.key === "/SmartDashboard/simpledashboard.voltage"
-      // );
-      // if (battRow !== undefined) {
-      //   try {
-      //     const battValue = Number.parseFloat(battRow.value);
-      //     this.batt = Math.round(battValue * 100) / 100;
-      //     this.battPercentage = (battValue / 14.0) * 100;
-      //     console.log("percentage: " + this.battPercentage);
-      //   } catch (e) {
-      //     console.error("Battery value is not a float!");
-      //   }
-      // } else {
-      //   console.debug("No battery value emitted from robot! It might have not had the change to send it yet...");
-      // }
     });
   }
 

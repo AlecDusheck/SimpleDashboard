@@ -64,6 +64,7 @@ const loadSettings = async () => {
           name: "/SmartDashboard/simpledashboard.voltage",
           bar: {
             maxValue: 13,
+            minValue: 10,
             enabled: true
           },
           friendlyName: "Voltage"
