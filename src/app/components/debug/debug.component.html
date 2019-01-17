@@ -30,6 +30,21 @@
             </tbody>
           </table>
         </div>
+        <div class="card-footer text-muted">
+          <form [formGroup]="insertForm" (ngSubmit)="onInsert()">
+            <div class="row">
+              <div class="col-sm-3" id="keyField">
+                <input id="name" placeholder="Key..." formControlName="key" class="form-control" [ngClass]="{ 'is-invalid': insertSubmitted && insertForm.controls['key'].errors }" />
+              </div>
+              <div class="col-sm-7" id="valueField">
+                <input id="value" placeholder="Value..." formControlName="value" class="form-control" [ngClass]="{ 'is-invalid': insertSubmitted && insertForm.controls['value'].errors }" />
+              </div>
+              <div class="col-sm-2" id="sendField">
+                <button [disabled]="insertLoading" class="btn btn-primary">Insert</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

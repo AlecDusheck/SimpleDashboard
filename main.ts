@@ -4,7 +4,7 @@ import * as os from "os";
 import * as path from "path";
 import * as url from "url";
 import * as wpilib from "wpilib-nt-client";
-import {AppSettings, ClickableBool, Usage} from './src/app/app.settings';
+import { AppSettings, ClickableBool, Usage } from "./src/app/app.settings";
 
 let win;
 let serve;
@@ -66,7 +66,7 @@ const loadSettings = async () => {
             maxValue: 13,
             enabled: true
           },
-           friendlyName: "Voltage"
+          friendlyName: "Voltage"
         }
       ],
       robotConnection: { addr: "roborio-2502-frc.local" }
@@ -133,6 +133,30 @@ const createWindow = () => {
       // Emit the settings to the sender
       event.sender.send("settings", store);
     });
+  });
+
+  //On put
+  ipcMain.on("put", (event, data) => {
+    if (!client.isConnected()) return; // We're not connected
+
+    let value = data.data;
+
+    // Convert to number if we can
+    if(!Number.isNaN(Number.parseFloat(value)))
+      value = Number.parseFloat(value);
+
+    // Convert to number if we can
+    if(value === "true" || value === "false")
+      value = value === "true";
+
+    const id = client.getKeyID(data.id);
+
+    if (id !== undefined)
+      client.Update(id, value);
+    else
+      client.Assign(value, data.id, false);
+
+    event.sender.send('updated');
   });
 
   // Prep the IPC socket for using NetworkTables
