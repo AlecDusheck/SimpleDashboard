@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { RobotManagerService } from "../../services/robot-manager.service";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ElectronService} from '../../providers/electron.service';
+import { RobotManagerService } from "../../services/robot-manager.service";
 
 @Component({
   selector: "app-debug",
@@ -10,9 +10,9 @@ import {ElectronService} from '../../providers/electron.service';
 })
 export class DebugComponent implements OnInit {
 
-  insertForm: FormGroup;
-  insertLoading = false;
-  insertSubmitted = false;
+  public insertForm: FormGroup;
+  public insertLoading = false;
+  public insertSubmitted = false;
 
   constructor(public robotManager: RobotManagerService,
               private formBuilder: FormBuilder,
@@ -23,11 +23,12 @@ export class DebugComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  public ngOnInit() {}
 
-  onInsert(): void{
-      if(this.insertForm.invalid)
+  public onInsert(): void{
+      if(this.insertForm.invalid) {
         return;
+      }
 
       this.insertSubmitted = true;
       this.insertLoading = true;

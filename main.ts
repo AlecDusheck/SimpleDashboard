@@ -24,12 +24,12 @@ const networkTablesRecieve = (key, value, valueType, msgType, id, flags) => {
 
   // Assemble the data received into JSON
   const dataPackage = {
-    key: key,
-    value: value,
-    valueType: valueType,
-    msgType: msgType,
-    id: id,
-    flags: flags
+    key,
+    value,
+    valueType,
+    msgType,
+    id,
+    flags
   };
 
   console.log("packaging data: " + JSON.stringify(dataPackage));
@@ -44,7 +44,7 @@ const loadSettings = async () => {
   let settings: AppSettings;
   try {
     // FYI: The <AppSettings><unknown> allows the cast to AppSettings
-    settings = await (<AppSettings>(<unknown>fs.readJson(configPath)));
+    settings = await ((fs.readJson(configPath) as unknown) as AppSettings);
   } catch (e) {
     console.debug(e);
     // Check if the file isn't found.
@@ -79,7 +79,7 @@ const loadSettings = async () => {
 };
 
 const createWindow = () => {
-  //This is needed because of a weird-ass Electron error
+  // This is needed because of a weird-ass Electron error
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
@@ -91,7 +91,7 @@ const createWindow = () => {
     height: Math.round(size.height * 0.5), // TODO: update to actual size
     title: "Simple Dashboard"
   });
-  //Hide the useless Electron menu bar
+  // Hide the useless Electron menu bar
   win.setMenuBarVisibility(false);
 
   console.debug(
@@ -136,26 +136,30 @@ const createWindow = () => {
     });
   });
 
-  //On put
+  // On put
   ipcMain.on("put", (event, data) => {
-    if (!client.isConnected()) return; // We're not connected
+    if (!client.isConnected()) { return; } // We're not connected
 
     let value = data.data;
 
     // Convert to number if we can
-    if(!Number.isNaN(Number.parseFloat(value)))
+    if(!Number.isNaN(Number.parseFloat(value))) {
       value = Number.parseFloat(value);
+    }
 
     // Convert to number if we can
-    if(value === "true" || value === "false")
+    if(value === "true" || value === "false") {
       value = value === "true";
+    }
 
     const id = client.getKeyID(data.id);
 
-    if (id !== undefined)
+    if (id !== undefined) {
       client.Update(id, value);
-    else
+    }
+    else {
       client.Assign(value, data.id, false);
+    }
 
     event.sender.send('updated');
   });
@@ -169,7 +173,7 @@ const createWindow = () => {
       // Make sure we don't double register the listener...
       client.removeListener(networkTablesRecieve);
 
-      //Check for errors
+      // Check for errors
       if (err) {
         console.log("[NT] Failed to connect. (" + err + ")");
 

@@ -26,10 +26,10 @@ export class NetworkTablesEngineService {
           existingValue => existingValue.key === data.key
         );
         if (index !== -1) {
-          //Existing value, insert into the index
+          // Existing value, insert into the index
           this.table[index] = data;
         } else {
-          //New value, push it!
+          // New value, push it!
           this.table.push(data);
         }
       });

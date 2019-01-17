@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { RobotManagerService } from "../../../services/robot-manager.service";
 import { ConfigService } from "../../../services/config.service";
+import { RobotManagerService } from "../../../services/robot-manager.service";
 
 @Component({
   selector: "app-status-module",
@@ -19,11 +19,11 @@ export class StatusModuleComponent implements OnInit, OnDestroy {
     this.table = [];
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.onUpdate = this.robotManager.networkTables.onUpdate.subscribe(() => {
       this.table = [];
       this.config.settings.usage.map(pinnedVar => {
-        let row = this.robotManager.networkTables.table.find(
+        const row = this.robotManager.networkTables.table.find(
           row => row.key === pinnedVar.name
         );
 
@@ -68,7 +68,7 @@ export class StatusModuleComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.onUpdate) this.onUpdate.unsubscribe();
+  public ngOnDestroy(): void {
+    if (this.onUpdate) { this.onUpdate.unsubscribe(); }
   }
 }

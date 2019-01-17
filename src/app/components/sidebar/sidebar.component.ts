@@ -19,8 +19,8 @@ export class SidebarComponent implements OnInit {
     public robotManager: RobotManagerService
   ) {}
 
-  ngOnInit() {
-    //TODO: debugging
+  public ngOnInit() {
+    // TODO: debugging
     this.sidebarDisplayed = true;
 
     this.router.events.subscribe(e => {

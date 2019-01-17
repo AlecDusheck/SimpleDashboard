@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { ElectronService } from "../providers/electron.service";
 import { AppSettings } from "../app.settings";
+import { ElectronService } from "../providers/electron.service";
 
 @Injectable({
   providedIn: "root"

@@ -39,7 +39,7 @@ export class RobotManagerService {
     this.status = RobotStatus.DISCONNECTED;
   }
 
-  connect(): void {
+  public connect(): void {
     // Check if we're running in Electron or in debug
     if (!this.electronService.isElectron()) {
       console.warn(

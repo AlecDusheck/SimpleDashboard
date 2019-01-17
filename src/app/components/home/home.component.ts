@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { RobotManagerService } from "../../services/robot-manager.service";
 import { ConfigService } from "../../services/config.service";
+import { RobotManagerService } from "../../services/robot-manager.service";
 
 @Component({
   selector: "app-home",
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
     public config: ConfigService
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     console.log("app dasdas done!");
   }
 }
